@@ -9,20 +9,20 @@
     </div>
     <div class="answer">
       <form>
-        <label class="container">One
-          <input type="radio" name="radio" value="A" @change="onChecked($event)">
+        <label class="container">{{ answer[0] }}
+          <input type="radio" name="radio" value="A" @click="onChecked($event)">
           <span class="checkmark">A</span>
         </label>
-        <label class="container">Two
-          <input type="radio" name="radio" value="B" @change="onChecked($event)">
+        <label class="container"> {{ answer[1] }}
+          <input type="radio" name="radio" value="B" @click="onChecked($event)">
           <span class="checkmark">B</span>
         </label>
-        <label class="container">Three
-          <input type="radio" name="radio" value="C" @change="onChecked($event)">
+        <label class="container"> {{ answer[2] }}
+          <input type="radio" name="radio" value="C" @click="onChecked($event)">
           <span class="checkmark">C</span>
         </label>
-        <label class="container">Four
-          <input type="radio" name="radio" value="D" @change="onChecked($event)">
+        <label class="container"> {{ answer[3] }}
+          <input type="radio" name="radio" value="D" @click="onChecked($event)">
           <span class="checkmark">D</span>
         </label>
       </form>
@@ -36,12 +36,24 @@ export default {
   name : "Question",
   props: {
     questionDesc: String,
-    question: String
+    question: String,
+    answer: String
+  },
+  data() {
+    return {
+      selectedAnswer: ""
+    }
   },
   methods: {
     onChecked(event) {
-        var optionText = event.target.value;
-        console.log(optionText);
+        var optionText = event.target
+        if (optionText.value === this.selectedAnswer) {
+          optionText.checked = false
+          this.selectedAnswer = ""
+        } else {
+        this.selectedAnswer = optionText.value
+        console.log(this.selectedAnswer)
+        }
     }
   }
 }
@@ -101,7 +113,7 @@ export default {
   width: 650px;
   text-align: left;
 }
-.p.question {
+.question {
   font-weight: bold;
 }
 </style>
