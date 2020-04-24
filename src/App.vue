@@ -11,7 +11,12 @@
       </div>  
     </div>
     <div>
-      <Question :questionDesc="questionText" :question="quest" :answer="answerList" />
+      <Question
+        v-model="page"
+        :questionDesc="questionText" 
+        :question="quest" 
+        :answer="answerList"
+      />
     </div>
   </div>
 </template>
@@ -38,6 +43,11 @@ export default {
       answerList: [],
     }
   },
+  watch: {
+    page () {
+      this.onLoad()
+    }
+  },
   mounted () {
     this.onLoad()
   },
@@ -45,15 +55,14 @@ export default {
     onLoad () {
       axios.get('http://localhost:3000/questions').then(res => {
         if(res.status == 200) {
-          this.questionText = res.data[0].questionDescription
-          this.quest = res.data[0].question
-          this.answerList = res.data[0].answers
-          console.log(res.data[0].question)
+          console.log(res.data.length)
+          this.questionText = res.data[this.page - 1].questionDescription
+          this.quest = res.data[this.page - 1].question
+          this.answerList = res.data[this.page - 1].answers
         }
       }).catch ((err) => {
         console.log(err);
       })
-      console.log(this.payloads)
     },
     changePage (event) {
       if (event === "next" ) {
