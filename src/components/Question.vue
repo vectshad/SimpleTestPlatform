@@ -56,12 +56,11 @@ export default {
   methods: {
     onChecked (event) {
         var optionText = event.target
-        if (optionText.value === this.selectedAnswer && this.answer !== undefined) {
+        if (optionText.value === this.selectedAnswer && this.selectedAnswer !== "") {
           optionText.checked = false
           this.selectedAnswer = ""
         } else {
           this.selectedAnswer = optionText.value
-          this.answer = optionText.value
         }
         // passing to parent
         this.$emit("answer", this.selectedAnswer)
@@ -82,6 +81,7 @@ export default {
       for (var i = 0; i < 4; i++) {
         document.getElementsByClassName('button')[i].checked = false;
       }
+      this.selectedAnswer = ""
     }
   }
 }

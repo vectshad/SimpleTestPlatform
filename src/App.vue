@@ -20,21 +20,31 @@
         :answer="allAnswer[answerID]"
       />
     </div>
+    <div>
+      <Review
+        :pages="maxPage"
+        :selectedAnswers="allAnswer"
+        :key="updateUI"
+      />
+    </div>  
   </div>
 </template>
 
 <script>
 import Question from './components/Question.vue'
+import Review from './components/Review.vue'
 import axios from 'axios'
 import './assets/scss/app.scss'
 
 export default {
   name: 'App',
   components: {
-    Question
+    Question,
+    Review
   },
   data () {
     return {
+      updateUI: false,
       answerID: 1,
       questionText: "",
       quest: "",
@@ -46,16 +56,16 @@ export default {
     }
   },
   watch: {
-    page () {
-      this.onLoad()
+    async page () {
+     await this.onLoad()
     }
   },
-  mounted () {
-    this.onLoad()
+  async mounted () {
+    await this.onLoad()
   },
   methods: {
-    onLoad () {
-      axios.get('http://localhost:3000/questions').then(res => {
+   async onLoad () {
+     await axios.get('http://localhost:3000/questions').then(res => {
         if(res.status == 200) {
           this.answerID = res.data[this.page - 1].id
           this.maxPage = res.data.length
@@ -66,6 +76,8 @@ export default {
       }).catch ((err) => {
         console.log(err);
       })
+      this.updateUI = !this.updateUI
+      console.log("ASD", this.maxPage)
     },
     changePage (event) {
       if (event === "next" && this.page < this.maxPage) {
