@@ -12,10 +12,12 @@
     </div>
     <div>
       <Question
-        v-model="page"
+        v-on:answer="onAnswerClick"
+        :id="answerID"
         :questionDesc="questionText" 
         :question="quest" 
-        :answer="answerList"
+        :answers="answerList"
+        :answer="allAnswer[answerID]"
       />
     </div>
   </div>
@@ -31,17 +33,16 @@ export default {
   components: {
     Question
   },
-  props: {
-    title: {
-      default: "TPS - Penalaran Umum",
-    }
-  },
   data () {
     return {
-      page: 1,
-      questionText : "",
+      answerID: 1,
+      questionText: "",
       quest: "",
       answerList: [],
+      page: 1,
+      maxPage : 1,
+      title: "TPS - Penalaran Umum",
+      allAnswer: []
     }
   },
   watch: {
@@ -56,7 +57,8 @@ export default {
     onLoad () {
       axios.get('http://localhost:3000/questions').then(res => {
         if(res.status == 200) {
-          console.log(res.data.length)
+          this.answerID = res.data[this.page - 1].id
+          this.maxPage = res.data.length
           this.questionText = res.data[this.page - 1].questionDescription
           this.quest = res.data[this.page - 1].question
           this.answerList = res.data[this.page - 1].answers
@@ -66,11 +68,15 @@ export default {
       })
     },
     changePage (event) {
-      if (event === "next" ) {
+      if (event === "next" && this.page < this.maxPage) {
         this.page = this.page + 1
       } else if (event === "prev" && this.page > 1) {
         this.page = this.page - 1
       }
+    },
+    onAnswerClick(answer) {
+      this.allAnswer[this.page] = answer
+      console.log(this.allAnswer)
     }
   }
 }
