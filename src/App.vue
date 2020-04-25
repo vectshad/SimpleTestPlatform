@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <div class="row">
-      <div class="column">
-        {{ title }} 
-      </div>
-      <div class="column">
-        <a class="round" @click="changePage('prev')"> &#8249;</a> 
-        {{ page }}
-        <a class="round" @click="changePage('next')"> &#8250; </a>
+    <div class="side">
+      <div>
+        <Review
+          :pages="maxPage"
+          :selectedAnswers="allAnswer"
+          :key="updateUI"
+        />
       </div>  
     </div>
-    <div>
-      <Question
-        v-on:answer="onAnswerClick"
-        :id="answerID"
-        :questionDesc="questionText" 
-        :question="quest" 
-        :answers="answerList"
-        :answer="allAnswer[answerID]"
-      />
+    <div class="main">
+      <div class="row">
+        <div class="column">
+          {{ title }} 
+        </div>
+        <div class="column">
+          <a class="round" @click="changePage('prev')"> &#8249;</a> 
+          {{ page }}
+          <a class="round" @click="changePage('next')"> &#8250; </a>
+        </div>  
+      </div>
+      <div>
+        <Question
+          v-on:answer="onAnswerClick"
+          :id="answerID"
+          :questionDesc="questionText" 
+          :question="quest" 
+          :answers="answerList"
+          :answer="allAnswer[answerID]"
+        />
+      </div>
     </div>
-    <div>
-      <Review
-        :pages="maxPage"
-        :selectedAnswers="allAnswer"
-        :key="updateUI"
-      />
-    </div>  
   </div>
 </template>
 

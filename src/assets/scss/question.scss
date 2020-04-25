@@ -7,14 +7,12 @@
   font-size: 15px;
 }
 
-/* Hide the browser's default radio button */
 .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-/* Create a custom radio button */
 .checkmark {
   position: absolute;
   top: 0;
@@ -26,14 +24,12 @@
   text-align: center;
 }
 
-/* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #e37222
 }
 .question-box {
   background-color: rgb(255, 255, 255);

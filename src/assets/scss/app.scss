@@ -7,11 +7,23 @@
   margin-top: 60px;
 }
 
+.main {
+  margin-left: 30%; 
+  padding: 0px 10px;
+}
+
+.side {
+	position: fixed;
+	z-index: 1;
+	top: 20px;
+	left: 10px;
+	padding: 8px;
+}
 .row {
 	margin:20px;
 	text-align:left;
 	width:100%;
-	font-size:0.1px;/* Kill white-space*/
+	font-size:0.1px;
 }
 .column {
 	display:inline-block;
@@ -39,7 +51,7 @@ a {
 }
 
 a:hover {
-  background-color: #4CAF50;
+  background-color: #e37222;
   color: black;
 }
 

@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import '../assets/scss/review.scss'
+
 export default {
   name: "Review",
   props: {
@@ -62,21 +64,3 @@ export default {
 
 
 </script>
-
-<style scoped>
-.answer-box {
-  display:table;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  width: 300px;
-  height: 300px;
-  border: 1px solid lightgray;
-  padding: 20px;
-  margin: 20px;
-  text-align: left;
-}
-
-.list-box {
-  display: table-cell;
-}
-</style>

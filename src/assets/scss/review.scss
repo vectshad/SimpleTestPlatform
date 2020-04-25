@@ -1,0 +1,15 @@
+.answer-box {
+  display:table;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+}
+
+.list-box {
+  display: table-cell;
+}
