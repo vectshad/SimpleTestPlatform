@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div class="side">
+     <div>
+       <Timer/>
+    </div>
       <div>
         <Review
           :pages="maxPage"
@@ -37,6 +40,7 @@
 <script>
 import Question from './components/Question.vue'
 import Review from './components/Review.vue'
+import Timer from './components/Timer.vue'
 import axios from 'axios'
 import './assets/scss/app.scss'
 
@@ -44,7 +48,8 @@ export default {
   name: 'App',
   components: {
     Question,
-    Review
+    Review,
+    Timer
   },
   data () {
     return {
