@@ -24,6 +24,7 @@
 <script>
 import Question from './components/Question.vue'
 import axios from 'axios'
+import './assets/scss/app.scss'
 
 export default {
   name: 'App',
@@ -75,53 +76,3 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.row {
-	margin:20px;
-	text-align:left;
-	width:100%;
-	font-size:0.1px;/* Kill white-space*/
-}
-.column {
-	display:inline-block;
-	padding:5px;
-	vertical-align:top;
-	font-size:22px;
-  margin-right: 400px;
-}
-.row:after{
-	content:"";
-	display:inline-block;
-	height:1px;
-	width:0;
-	font-size:0;
-	line-height:0;
-	overflow:hidden;
-	margin: 0 100% 0 0;
-}
-
-a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #ddd;
-}
-
-a:hover {
-  background-color: #4CAF50;
-  color: black;
-}
-
-.round {
-  border-radius: 50%;
-}
-</style>
