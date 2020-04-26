@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="timer">
     {{ time }}
   </div>
 </template>
@@ -9,8 +9,8 @@ export default {
   name: "Timer",
   data () {
     return {
-      minutes:10,
-      secondes:10,
+      minutes:1,
+      second:10,
       time:"",
       timer:null,
     }
@@ -20,18 +20,31 @@ export default {
   },
 	methods: {
     start () {
-      if (!this.timer) {
+      if (this.second >= 0 && this.minutes >= 0 ) {
         this.timer = setInterval( () => {
-          if (this.secondes > 0) {
-            this.secondes--
-          } else {
-            this.minutes = this.minutes - 1
-            this.secondes = 59
-          }
-          this.time = this.minutes + " : " + this.secondes 
+        if (this.second > 0 && this.minutes >= 0) {
+          this.second--
+        } else if (this.minutes > 0) {
+          this.minutes = this.minutes - 1
+          this.second = 59
+        } else {
+          clearInterval(this.timer)
+        }
+        if (this.minutes === 0) {
+          document.getElementById("timer").style.background= "red"
+        }
+        this.time = this.minutes + " : " + this.second
         }, 1000 )
       }
-    },
-	}
+    }
+  }
 }
 </script>
+
+<style scoped>
+#timer {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 50px;
+}
+</style>

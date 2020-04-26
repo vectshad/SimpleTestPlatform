@@ -33,27 +33,41 @@
           :answer="allAnswer[answerID]"
         />
       </div>
+      <div>
+        <button class="btn-finish" @click="finish()">Finish</button>
+        <PopUp
+          v-if="popUp"
+          v-on:status="onFinishClick"
+          />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import './assets/scss/app.scss'
 import Question from './components/Question.vue'
 import Review from './components/Review.vue'
 import Timer from './components/Timer.vue'
+import PopUp from './components/PopUp.vue'
 import axios from 'axios'
-import './assets/scss/app.scss'
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
 
 export default {
   name: 'App',
   components: {
     Question,
     Review,
-    Timer
+    Timer,
+    PopUp
   },
   data () {
     return {
       updateUI: false,
+      popUp: false,
       answerID: 1,
       questionText: "",
       quest: "",
@@ -73,8 +87,8 @@ export default {
     await this.onLoad()
   },
   methods: {
-   async onLoad () {
-     await axios.get('http://localhost:3000/questions').then(res => {
+    async onLoad () {
+      await axios.get('http://localhost:3000/questions').then(res => {
         if(res.status == 200) {
           this.answerID = res.data[this.page - 1].id
           this.maxPage = res.data.length
@@ -95,9 +109,19 @@ export default {
         this.page = this.page - 1
       }
     },
-    onAnswerClick(answer) {
+    onAnswerClick (answer) {
       this.allAnswer[this.page] = answer
       console.log(this.allAnswer)
+    },
+    finish () {
+      this.popUp = !this.popUp
+    },
+    onFinishClick (status) {
+      if (!status) {
+        this.popUp = false;
+      } else {
+        this.popUp = false;
+      }
     }
   }
 }
