@@ -9,10 +9,16 @@ export default {
   name: "Timer",
   data () {
     return {
-      minutes:1,
-      second:10,
+      timeout: false,
+      minutes:3,
+      second:1,
       time:"",
       timer:null,
+    }
+  },
+  watch: {
+    time () {
+      this.isTimeout()
     }
   },
   mounted () {
@@ -35,6 +41,13 @@ export default {
         }
         this.time = this.minutes + " : " + this.second
         }, 1000 )
+      }
+    },
+    isTimeout () {
+      if (this.time === "0 : 0") {
+        this.timeout = true
+        this.$parent.isTimeout()
+        console.log("ASHIIAP")
       }
     }
   }

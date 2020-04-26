@@ -49,9 +49,9 @@ export default {
       this.answers = tempList
     },
     checkAnswer () {
-      var KJ = ["A", "B", "C", "D", "E"]
+      var answerKey = ["A", "B", "C", "D", "E"]
       for (var i = 0; i < this.pages; i++) {
-        if (this.answers[i] === KJ[i]) {
+        if (this.answers[i] === answerKey[i]) {
           this.results[i] = "True"
           this.score++
         } else {

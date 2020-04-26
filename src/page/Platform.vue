@@ -78,7 +78,7 @@ export default {
   watch: {
     async page () {
      await this.onLoad()
-    }
+    },
   },
   async mounted () {
     await this.onLoad()
@@ -105,6 +105,9 @@ export default {
         this.page = this.page - 1
       }
     },
+    isTimeout () {
+      this.$router.push({ name: "Evaluate", query: {pages: this.maxPage, selectedAnswers: this.allAnswer}})
+    },
     onAnswerClick (answer) {
       this.allAnswer[this.page] = answer
       console.log(this.allAnswer)
@@ -119,7 +122,6 @@ export default {
       } else {
         this.popUp = false;
         this.$router.push({ name: "Evaluate", query: {pages: this.maxPage, selectedAnswers: this.allAnswer}})
-        console.log("UHUY")
       }
     }
   }
