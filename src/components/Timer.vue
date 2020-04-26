@@ -47,7 +47,6 @@ export default {
       if (this.time === "0 : 0") {
         this.timeout = true
         this.$parent.isTimeout()
-        console.log("ASHIIAP")
       }
     }
   }

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import '../assets/scss/evaluate.scss'
 
 export default {
@@ -31,27 +32,41 @@ export default {
       answers:[],
       pages: 0,
       score: 0,
-      results: []
+      results: [],
+      answersKey: []
     }
   },
-  mounted () {
+  async mounted () {
+    await this.getAnswersKey()
     this.answers = this.$route.query.selectedAnswers
     this.pages = this.$route.query.pages
     this.fixList()
     this.checkAnswer()
   },
   methods: {
+    async getAnswersKey () {
+      await axios.get('http://localhost:3000/answerskey').then(res => {
+        if(res.status == 200) {
+          this.answersKey = res.data
+        }
+      }).catch ((err) => {
+        console.log(err);
+      })
+      console.log("KJ", this.answersKey)
+    },
     fixList () {
-      var tempList = []
+      var tempList1 = []
+      var tempList2 = []
       for (var i = 0; i < this.pages; i++) {
-        tempList[i] = this.answers[i + 1]
+        tempList1[i] = this.answers[i + 1]
+        tempList2[i] = this.answersKey[i].answer
       }
-      this.answers = tempList
+      this.answers = tempList1
+      this.answersKey = tempList2
     },
     checkAnswer () {
-      var answerKey = ["A", "B", "C", "D", "E"]
       for (var i = 0; i < this.pages; i++) {
-        if (this.answers[i] === answerKey[i]) {
+        if (this.answers[i] === this.answersKey[i]) {
           this.results[i] = "True"
           this.score++
         } else {

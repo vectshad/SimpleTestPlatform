@@ -31,7 +31,7 @@
       "answers": ["officia deserunt mollit anim", "uis autem vel eum iure reprehenderit ?", "Quire reprehenderit", "aliquam quaerat voluptatem", "Nuis aute irure dolor", "veritatis et quasi archieatae"]
     }
   ],
-  "answers": [
+  "answerskey": [
     {
       "id": 1,
       "answer": "A"
