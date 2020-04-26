@@ -1,4 +1,4 @@
-# eduka-test
+# Simple Test Platform
 
 ## Project setup
 ```

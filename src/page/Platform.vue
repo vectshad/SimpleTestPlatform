@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import Question from './components/Question.vue'
-import Review from './components/Review.vue'
-import Timer from './components/Timer.vue'
-import PopUp from './components/PopUp.vue'
+import Question from '../components/Question.vue'
+import Review from '../components/Review.vue'
+import Timer from '../components/Timer.vue'
+import PopUp from '../components/PopUp.vue'
 import axios from 'axios'
 
-import './assets/scss/app.scss'
+import '../assets/scss/platform.scss'
 
 export default {
   name: 'Platform',
@@ -97,7 +97,6 @@ export default {
         console.log(err);
       })
       this.updateUI = !this.updateUI
-      console.log("ASD", this.maxPage)
     },
     changePage (event) {
       if (event === "next" && this.page < this.maxPage) {
@@ -109,6 +108,7 @@ export default {
     onAnswerClick (answer) {
       this.allAnswer[this.page] = answer
       console.log(this.allAnswer)
+      this.updateUI = !this.updateUI
     },
     finish () {
       this.popUp = !this.popUp
@@ -118,7 +118,7 @@ export default {
         this.popUp = false;
       } else {
         this.popUp = false;
-        this.$router.push({ name: "Review"})
+        this.$router.push({ name: "Evaluate", query: {pages: this.maxPage, selectedAnswers: this.allAnswer}})
         console.log("UHUY")
       }
     }

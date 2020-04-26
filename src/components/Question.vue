@@ -25,6 +25,10 @@
           <input type="radio" name="radio" class="button" value="D" @click="onChecked($event)">
           <span class="checkmark">D</span>
         </label>
+        <label class="container"> {{ answers[4] }}
+          <input type="radio" name="radio" class="button" value="E" @click="onChecked($event)">
+          <span class="checkmark">E</span>
+        </label>
       </form>
     </div>  
   </div>
@@ -70,15 +74,16 @@ export default {
       var prevMark = this.answer
       console.log(prevMark)
 
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 5; i++) {
         if (document.getElementsByClassName('button')[i].value === prevMark){
           this.selectedAnswer = prevMark
           document.getElementsByClassName('button')[i].checked = true 
         }
       }
+      console.log("asd", this.answers)
     },
     emptyMark () {
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 5; i++) {
         document.getElementsByClassName('button')[i].checked = false;
       }
       this.selectedAnswer = ""

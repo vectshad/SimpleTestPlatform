@@ -1,0 +1,26 @@
+body {
+    background:#f7f7f7;
+}
+#evaluate {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.evaluate-box {
+  display:table;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  width: 300px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.list-box {
+  display: table-cell;
+}

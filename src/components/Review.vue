@@ -1,5 +1,5 @@
 <template>
-  <div class="answer-box">
+  <div class="review-box">
     <div v-if="answers" :key="updateUI" class = "list-box">
       <p id="rev"> Review</p>
       <ol>
@@ -34,11 +34,6 @@ export default {
       answers:[],
     }
   },
-  watch: {
-    selectedAnswers () {
-      this.updateReview()
-    }
-  },
   mounted () {
     this.createList()
     console.log("answers", this.selectedAnswers)
@@ -54,11 +49,6 @@ export default {
         }
       }
       this.updateUI = !this.updateUI
-    }, 
-    updateReview () {
-      for (var i = 1; i <=this.pages; i++) {
-        console.log(this.selectedAnswers[i])
-      }
     }
   } 
 }

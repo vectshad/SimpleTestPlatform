@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Platform from '../page/Platform.vue'
-import Review from '../page/Review.vue'
+import Evaluate from '../page/Evaluate.vue'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: Platform
     },
     {
-      path: '/review',
-      name: 'Review',
-      component: Review
+      path: '/evaluate',
+      name: 'Evaluate',
+      component: Evaluate
     }
   ]
 })
