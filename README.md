@@ -15,10 +15,9 @@ yarn serve
 yarn build
 ```
 
-### Lints and fixes files
+### Start mockup server
 ```
-yarn lint
+json-server --watch db.json
 ```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
